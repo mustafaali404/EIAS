@@ -28,3 +28,4 @@ C:\Users\Mohammed Mustafa Ali\Desktop\EIAS\obj\Debug\net8.0\refint\EIAS.dll
 C:\Users\Mohammed Mustafa Ali\Desktop\EIAS\obj\Debug\net8.0\EIAS.pdb
 C:\Users\Mohammed Mustafa Ali\Desktop\EIAS\obj\Debug\net8.0\EIAS.genruntimeconfig.cache
 C:\Users\Mohammed Mustafa Ali\Desktop\EIAS\obj\Debug\net8.0\ref\EIAS.dll
+C:\Users\Mohammed Mustafa Ali\Desktop\EIAS\obj\Debug\net8.0\EIAS.sourcelink.json
