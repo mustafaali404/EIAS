@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mohammed Mustafa Ali\\Desktop\\EIAS\\EIAS.csproj": {}
+    "C:\\Users\\Tim\\Desktop\\SE\\EIAS\\EIAS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mohammed Mustafa Ali\\Desktop\\EIAS\\EIAS.csproj": {
+    "C:\\Users\\Tim\\Desktop\\SE\\EIAS\\EIAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mohammed Mustafa Ali\\Desktop\\EIAS\\EIAS.csproj",
+        "projectUniqueName": "C:\\Users\\Tim\\Desktop\\SE\\EIAS\\EIAS.csproj",
         "projectName": "EIAS",
-        "projectPath": "C:\\Users\\Mohammed Mustafa Ali\\Desktop\\EIAS\\EIAS.csproj",
-        "packagesPath": "C:\\Users\\Mohammed Mustafa Ali\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mohammed Mustafa Ali\\Desktop\\EIAS\\obj\\",
+        "projectPath": "C:\\Users\\Tim\\Desktop\\SE\\EIAS\\EIAS.csproj",
+        "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tim\\Desktop\\SE\\EIAS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mohammed Mustafa Ali\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,6 +48,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.6.3, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

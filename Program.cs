@@ -5,6 +5,8 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+string connectionString= app.Configuration.GetConnectionString("DefaultConnection")!;
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
