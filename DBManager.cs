@@ -20,26 +20,6 @@ namespace EIAS
         private SqlConnection connection;
         private string connectionString;
 
-        public enum Table
-        {
-            ForumUsers,
-            Login,
-            Posts,
-            Threads
-        }
-
-        /*public static DBManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new DBManager();
-                }
-                return instance;
-            }
-        }*/
-
         public DBManager ()
         {
             // Temporary solution. The Program.cs class already fetches the string from config file,
@@ -81,7 +61,13 @@ namespace EIAS
             connection.Dispose();
         }
 
-
+        /// <summary>
+        /// Executes SQL queries that return values (SELECT). The SQL command is parameterized to increase security.
+        /// </summary>
+        /// <param name="query">Parameterized SQL command to be executed.</param>
+        /// <param name="parameters">Parameters complementing the SQL command.</param>
+        /// <returns>DataTable of rows of data returned by the database.</returns>
+        /// <exception cref="Exception">Exception is thrown in case of SQL execution failure.</exception>
         public DataTable Query(string query, SqlParameter[] parameters = null)
         {
             try
@@ -113,6 +99,13 @@ namespace EIAS
             }
         }
 
+        /// <summary>
+        /// Executes SQL queries that don't return values (INSERT, UPDATE, etc). The SQL command is parameterized to increase security.
+        /// </summary>
+        /// <param name="query">Parameterized SQL command to be executed.</param>
+        /// <param name="parameters">Parameters complementing the SQL command.</param>
+        /// <returns>Int number of rows affected by the SQL statement.</returns>
+        /// <exception cref="Exception">Exception is thrown in case of SQL execution failure.</exception>
         public int NonQuery(string query, SqlParameter[] parameters = null)
         {
             try

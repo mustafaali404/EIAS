@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EIAS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+520ada313e9a34761fea2414de67a7015595256e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c1696718df95a5e0a03cc1ecb9b7c3328ac5121")]
 [assembly: System.Reflection.AssemblyProductAttribute("EIAS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EIAS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

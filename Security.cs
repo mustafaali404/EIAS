@@ -23,7 +23,7 @@ namespace EIAS
 
         private static readonly int saltLength = 16;
         /// <summary>
-        /// Generates salted password hash
+        /// Generates salted password hash.
         /// </summary>
         /// <param name="password"></param>
         /// <param name="salt"></param>
@@ -49,7 +49,7 @@ namespace EIAS
         }
 
         /// <summary>
-        /// Generates random salt
+        /// Generates random salt.
         /// </summary>
         /// <returns>
         /// string salt
@@ -62,11 +62,21 @@ namespace EIAS
             return new string(Enumerable.Range(1, saltLength).Select(_ => chars[rng.Next(chars.Length)]).ToArray());
         }
 
+        /// <summary>
+        /// Sanitizes SQL statements by eliminating the effectiveness of ' escape character injections.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string Sanitize (string str)
         {
             return str.Replace("'", "''");
         }
 
+        /// <summary>
+        /// Estimates whether the email is likely to be valid or not.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static bool IsValidEmail(string email)
         {
             var trimmedEmail = email.Trim();
@@ -86,6 +96,11 @@ namespace EIAS
             }
         }
 
+        /// <summary>
+        /// Password regex check.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool IsValidPassword(string password)
         {
             return new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$").IsMatch(password);

@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Options;
 using System;
 using System.Data;
 using static System.Net.Mime.MediaTypeNames;
@@ -14,6 +15,7 @@ namespace EIAS
     /// </summary>
     public class User
     {
+        public static readonly int MaxAboutLength = 1024;
         private string role, userName, email, status, about, accountCreated, lastLogin, options;
         private int uid;
         private byte[] pfp;
@@ -32,6 +34,20 @@ namespace EIAS
             pfp = row.Field<byte[]>("PFP");
         }
 
+        public User(int uid, string role, string userName, string email, string status, string about, string accountCreated, string lastLogin, string options, byte[] pfp)
+        {
+            this.uid = uid;
+            this.role = role;  
+            this.userName = userName;  
+            this.email = email;
+            this.status = status;
+            this.about = about;
+            this.accountCreated = accountCreated;
+            this.lastLogin = lastLogin;
+            this.options = options;
+            this.pfp = pfp;
+        }
+
         public User(DataRow row)
         {
             //var str = row.ItemArray.Select(x => x.ToString()).ToArray();
@@ -41,6 +57,7 @@ namespace EIAS
         public User(int targetUid)
         {
             DBManager db = new();
+
             string query = "SELECT * FROM Users WHERE UID = @UID";
             var parameters = new[]
             {
@@ -141,7 +158,7 @@ namespace EIAS
 
 
             query = "UPDATE Login SET Email = @Email WHERE UID = @UID";
-            // Define parameters for the query
+            
             parameters = new[]
             {   new SqlParameter("@Email", newEmail),
                 new SqlParameter("@UID", uid),
@@ -151,7 +168,7 @@ namespace EIAS
 
 
             query = "UPDATE Users SET Email = @Email WHERE UID = @UID";
-            // Define parameters for the query
+            
             parameters = new[]
             {   new SqlParameter("@Email", newEmail),
                 new SqlParameter("@UID", uid),
@@ -159,6 +176,37 @@ namespace EIAS
 
             email = newEmail;
             return db.NonQuery(query, parameters);
+        }
+
+        public int UpdateAbout(string newAbout)
+        {
+            if (!Exists())
+            {
+                throw new ArgumentException("A user with the provided UID does not exist");
+            }
+
+            if (newAbout.Length > MaxAboutLength)
+            {
+                newAbout = newAbout.Substring(0, MaxAboutLength);
+            }
+            newAbout = Security.Sanitize(newAbout);
+
+            DBManager db = new();
+
+            string query = "UPDATE Users SET About = @About WHERE UID = @UID";
+            
+            var parameters = new[]
+            {   
+                new SqlParameter("@About", newAbout),
+                new SqlParameter("@UID", uid)
+            };
+
+            int rowsChanged = db.NonQuery(query, parameters);
+            if (rowsChanged > 0)
+            {
+                about = newAbout;
+            }
+            return rowsChanged;
         }
 
         public string Role { get => role; set => role = value; }
@@ -171,5 +219,22 @@ namespace EIAS
         public string Options { get => options; set => options = value; }
         public int Uid { get => uid; set => uid = value; }
         public byte[] Pfp { get => pfp; set => pfp = value; }
+
+        public static string UserDateTimeNow() => DateTime.Now.ToString("MM/dd/yyyy-HH:mm:ss:fff");
+        public bool Exists()
+        {
+            DBManager db = new();
+
+            string query = "SELECT * FROM Users WHERE UID = @UID";
+            var parameters = new[]
+            {
+                new SqlParameter("@UID", uid),
+            };
+
+            DataTable result = db.Query(query, parameters);
+            return result.Rows.Count > 0;
+
+
+        }
     }
 }
