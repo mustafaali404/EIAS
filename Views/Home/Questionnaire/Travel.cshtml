@@ -1,0 +1,36 @@
+@model EIAS.Models.Questionnaire
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Impact Assessment</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+
+<div class="tab-content">
+    <h1>Travel</h1>
+    <form asp-action="SaveTravel" method="post">
+        <label for="PublicTransportationType">Public Transportation Type:</label>
+        <input type="text" id="PublicTransportationType" name="PublicTransportationType" value="@Model.PublicTransportationType" required>
+
+        <label for="FrequencyPerMonth">Frequency Per Month:</label>
+        <input type="number" id="FrequencyPerMonth" name="FrequencyPerMonth" value="@Model.FrequencyPerMonth">
+
+        <label for="CommuteDuration">Commute Duration:</label>
+        <input type="text" id="CommuteDuration" name="CommuteDuration" value="@Model.CommuteDuration">
+
+        <label for="CommuteWithOthers">Do you commute with others?</label>
+        @Html.DropDownListFor(
+                 model => model.CommuteWithOthers,
+                 new SelectList(new[]
+                 {
+        new { Value = "true", Text = "Yes" },
+        new { Value = "false", Text = "No" }
+        }, "Value", "Text", Model.CommuteWithOthers),
+                 new { @class = "form-control", id = "CommuteWithOthers" }
+                 )
+
+        <button type="submit">Finish</button>
+    </form>
+</div>

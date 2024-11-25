@@ -1,0 +1,34 @@
+@model EIAS_Project.Models.Questionnaire
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Impact Assessment</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+
+<div class="tab-content">
+    <h1>Car</h1>
+    <form asp-action="SaveCar" method="post">
+        <label for="CarCount">How many cars do you own?</label>
+        <input type="number" id="CarCount" name="CarCount" value="@Model.CarCount" required>
+
+        <label for="Manufacturer">Manufacturer:</label>
+        <input type="text" id="Manufacturer" name="Manufacturer" value="@Model.Manufacturer">
+
+        <label for="ModelYear">Model Year:</label>
+        <input type="number" id="ModelYear" name="ModelYear" value="@Model.ModelYear">
+
+        <label for="CarModel">Car Model:</label>
+        <input type="text" id="CarModel" name="CarModel" value="@Model.CarModel">
+
+        <label for="MileageEfficiency">Mileage Efficiency:</label>
+        <input type="number" id="MileageEfficiency" name="MileageEfficiency" value="@Model.MileageEfficiency">
+
+        <label for="FuelType">Fuel Type:</label>
+        <input type="text" id="FuelType" name="FuelType" value="@Model.FuelType">
+
+        <button type="submit">Next Page</button>
+    </form>
+</div>

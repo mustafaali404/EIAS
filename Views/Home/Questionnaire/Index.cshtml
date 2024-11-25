@@ -1,0 +1,52 @@
+@model EIAS_Project.Models.Questionnaire
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Impact Assessment</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tab-layout">
+            <div class="tab-menu">
+                <ul>
+                    <li><a href="@Url.Action("Index", "Questionnaire")" class="active">Household</a></li>
+                    <li><a href="@Url.Action("Car", "Questionnaire")">Car</a></li>
+                    <li><a href="@Url.Action("Travel", "Questionnaire")">Travel</a></li>
+                    <li><a href="@Url.Action("Food", "Questionnaire")">Food</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <h1>Household</h1>
+                <form asp-action="SaveHousehold" method="post">
+                    <label for="HouseholdSize">Household Size:</label>
+                    <input type="number" id="HouseholdSize" name="HouseholdSize" value="@Model.HouseholdSize" required>
+
+                    <label for="Electricity">Electricity:</label>
+                    <input type="number" id="Electricity" name="Electricity" value="@Model.Electricity">
+
+                    <label for="NaturalGas">Natural Gas:</label>
+                    <input type="number" id="NaturalGas" name="NaturalGas" value="@Model.NaturalGas">
+
+                    <label for="Coal">Coal:</label>
+                    <input type="number" id="Coal" name="Coal" value="@Model.Coal">
+
+                    <label for="Solar">Solar:</label>
+                    <input type="number" id="Solar" name="Solar" value="@Model.Solar">
+
+                    <label for="Petroleum">Petroleum:</label>
+                    <input type="number" id="Petroleum" name="Petroleum" value="@Model.Petroleum">
+
+                    <label for="Wind">Wind:</label>
+                    <input type="number" id="Wind" name="Wind" value="@Model.Wind">
+
+                    <button type="submit">Next Page</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
